@@ -1,26 +1,39 @@
-class HeaderComponent extends React.Component {
+class Counter extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            count: 0
+        };
+//        this.increment = this.increment.bind(this);
+    }
+
+    increment() {
+      this.setState({
+       count: this.state.count+1
+       });
+    }
+
+    decrement() {
+        this.setState({
+            count: this.state.count-1
+            });
+    }
 
     render() {
-        const {children} = this.props;
-        const childrenArray = Array.isArray(children) ? children : [children];
-        console.log(childrenArray);
-        const p = React.createElement('p', {}, 'Super paragraph', ...childrenArray);
-        const h2 = React.createElement('h2', {title: 'Hi!'}, `Hello, ${this.props.text}`);
-        const article = React.createElement('article', {}, h2, p);
-        return article
+       
+        const h2 = React.createElement('h2', {}, this.state.count);
+        const buttonPlus = React.createElement('button', {onClick: ()=> {this.increment()}}, '+');
+        const buttonMinus = React.createElement('button', {onClick: ()=> {this.decrement()}}, '-');
+        return React.createElement(React.Fragment, null, h2, buttonMinus, buttonPlus); 
     }
 }
 
-const component = React.createElement(HeaderComponent, {text: 'React'}, 'Text', 'Another Text', 'Other text');
-const component2 = React.createElement(HeaderComponent, {text: 'JavaScript'});
-const parentElement = React.createElement('section', {}, component, component2);
+const component = React.createElement(Counter);
 
 const root = document.querySelector('#root');
-ReactDOM.render(parentElement, root);
-
-
+ReactDOM.render(component, root);
 
 /*
-Зробити класову компоненту, яка приймає через props ім'я і повертає h1 з текстом "Привіт, <ім'я>"
+Лічильник не має опускатись нижче нуля
 
 */
