@@ -20,7 +20,7 @@ class Counter extends React.Component {
     }
 
     render() {
-       
+
         const h2 = React.createElement('h2', {}, this.state.count);
         const buttonPlus = React.createElement('button', {onClick: ()=> {this.increment()}}, '+');
         const buttonMinus = React.createElement('button', {onClick: ()=> {this.decrement()}}, '-');
